@@ -1,0 +1,14 @@
+.post_search {
+	&--container {
+		background-color: #21759b;
+		padding: 30px;
+	}
+	&--read_more {
+		color: #fff;
+
+		a:not(.button):not(.logo) {
+			color: #fff;
+			text-decoration: underline;
+		}
+	}
+}
