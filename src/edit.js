@@ -1,11 +1,18 @@
 import { __ } from "@wordpress/i18n";
 import { useSelect } from "@wordpress/data";
 import { useState } from "@wordpress/element";
-import { InspectorControls, RichText } from "@wordpress/block-editor";
+import {
+	InspectorControls,
+	useBlockProps,
+	RichText,
+} from "@wordpress/block-editor";
 import { PanelBody, TextControl, Button } from "@wordpress/components";
 import "./editor.scss";
 
 const Edit = ({ attributes, setAttributes }) => {
+	const blockProps = useBlockProps({
+		className: "custom-block",
+	});
 	const { selectedPostId, selectedPostTitle, selectedPostPermalink } =
 		attributes;
 	const [searchTerm, setSearchTerm] = useState("");
@@ -29,11 +36,11 @@ const Edit = ({ attributes, setAttributes }) => {
 	};
 
 	return (
-		<>
+		<div {...blockProps}>
 			<InspectorControls>
-				<PanelBody title={__("Post Selection", "post-search")}>
+				<PanelBody title={__("Post Selection", "dmg-read-more")}>
 					<TextControl
-						label={__("Search Posts", "post-search")}
+						label={__("Search Posts", "dmg-read-more")}
 						value={searchTerm}
 						onChange={(value) => setSearchTerm(value)}
 					/>
@@ -47,7 +54,7 @@ const Edit = ({ attributes, setAttributes }) => {
 			</InspectorControls>
 			<RichText
 				tagName="p"
-				className="post_search--read_more"
+				className="dmg-read-more"
 				value={
 					selectedPostTitle
 						? `Read More: <a href="${selectedPostPermalink}">${selectedPostTitle}</a>`
@@ -55,7 +62,7 @@ const Edit = ({ attributes, setAttributes }) => {
 				}
 				onChange={() => {}}
 			/>
-		</>
+		</div>
 	);
 };
 

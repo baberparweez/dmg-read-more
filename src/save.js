@@ -4,17 +4,15 @@ const Save = ({ attributes }) => {
 	const { selectedPostTitle, selectedPostPermalink } = attributes;
 
 	return (
-		<div className="post_search--container">
-			<RichText.Content
-				tagName="p"
-				className="post_search--read_more"
-				value={
-					selectedPostTitle
-						? `Read More: <a href="${selectedPostPermalink}">${selectedPostTitle}</a>`
-						: ""
-				}
-			/>
-		</div>
+		<RichText.Content
+			tagName="p"
+			className="dmg-read-more"
+			value={
+				selectedPostTitle
+					? `Read More: <a href="${selectedPostPermalink}">${selectedPostTitle}</a>`
+					: ""
+			}
+		/>
 	);
 };
 
