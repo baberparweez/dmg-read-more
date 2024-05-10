@@ -15,5 +15,6 @@ WordPress Gutenberg block plugin with two different features:
      - Posts published after a specific date: `wp dmg-read-more search --date-after=2024-04-05`
      - Posts published between specific dates: `wp dmg-read-more search --date-before=2024-04-09 --date-after=2023-08-24`
 
-**NOTE**
+### NOTE
+
 There may be issues running the WP-CLI commands due to Local environment variables not being enabled by default. This is usually a Local by Flywheel issue. [This](https://community.localwp.com/t/local-5-x-how-to-check-site-remote-host-and-port/17085/18) forum explains how to run WP-CLI commands within Local by Flywheel.
