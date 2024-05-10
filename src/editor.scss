@@ -1,3 +1,9 @@
 .components-button {
 	height: auto;
 }
+
+.dmg-read-more-block {
+	&__pagination {
+		text-align: center;
+	}
+}

@@ -11,21 +11,34 @@ import "./editor.scss";
 
 const Edit = ({ attributes, setAttributes }) => {
 	const blockProps = useBlockProps({
-		className: "custom-block",
+		className: "dmg-read-more-block",
 	});
 	const { selectedPostId, selectedPostTitle, selectedPostPermalink } =
 		attributes;
 	const [searchTerm, setSearchTerm] = useState("");
+	const [page, setPage] = useState(1);
+	const perPage = 5;
 
 	const posts = useSelect(
 		(select) => {
 			return select("core").getEntityRecords("postType", "post", {
-				per_page: 10,
+				per_page: perPage,
+				page: page,
 				search: searchTerm,
 			});
 		},
-		[searchTerm],
+		[searchTerm, page],
 	);
+
+	// Check if selectedPostId is null and set it to the latest post
+	if (selectedPostId === undefined && posts && posts.length > 0) {
+		const latestPost = posts[0];
+		setAttributes({
+			selectedPostId: latestPost.id,
+			selectedPostTitle: latestPost.title.rendered,
+			selectedPostPermalink: latestPost.link,
+		});
+	}
 
 	const onSelectPost = (post) => {
 		setAttributes({
@@ -50,6 +63,14 @@ const Edit = ({ attributes, setAttributes }) => {
 								{post.title.rendered}
 							</Button>
 						))}
+					<div className="dmg-read-more-block__pagination">
+						<Button onClick={() => setPage(page - 1)} disabled={page === 1}>
+							{__("<", "dmg-read-more")}
+						</Button>
+						<Button onClick={() => setPage(page + 1)}>
+							{__(">", "dmg-read-more")}
+						</Button>
+					</div>
 				</PanelBody>
 			</InspectorControls>
 			<RichText
@@ -57,7 +78,10 @@ const Edit = ({ attributes, setAttributes }) => {
 				className="dmg-read-more"
 				value={
 					selectedPostTitle
-						? `Read More: <a href="${selectedPostPermalink}">${selectedPostTitle}</a>`
+						? `${__(
+								"Read More",
+								"dmg-read-more",
+						  )}: <a href="${selectedPostPermalink}">${selectedPostTitle}</a>`
 						: ""
 				}
 				onChange={() => {}}

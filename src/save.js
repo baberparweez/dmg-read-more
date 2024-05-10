@@ -1,3 +1,4 @@
+import { __ } from "@wordpress/i18n";
 import { RichText } from "@wordpress/block-editor";
 
 const Save = ({ attributes }) => {
@@ -9,7 +10,10 @@ const Save = ({ attributes }) => {
 			className="dmg-read-more"
 			value={
 				selectedPostTitle
-					? `Read More: <a href="${selectedPostPermalink}">${selectedPostTitle}</a>`
+					? `${__(
+							"Read More",
+							"dmg-read-more",
+					  )}: <a href="${selectedPostPermalink}">${selectedPostTitle}</a>`
 					: ""
 			}
 		/>

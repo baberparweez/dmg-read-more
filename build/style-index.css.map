@@ -1,1 +1,0 @@
-{"version":3,"file":"./style-index.css","mappings":";;;AACC;EACC;AAAF,C","sources":["webpack://dmg-read-more/./src/style.scss"],"sourcesContent":[".dmg-read_more {\n\ta:not(.button):not(.logo) {\n\t\ttext-decoration: underline;\n\t}\n}\n"],"names":[],"sourceRoot":""}
