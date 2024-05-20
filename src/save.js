@@ -1,23 +1,14 @@
-import { __ } from "@wordpress/i18n";
-import { RichText } from "@wordpress/block-editor";
+import { useBlockProps } from "@wordpress/block-editor";
 
 const Save = ({ attributes }) => {
-	const { selectedPostTitle, selectedPostPermalink } = attributes;
+	const { selectedPostId } = attributes;
 
-	return (
-		<RichText.Content
-			tagName="p"
-			className="dmg-read-more"
-			value={
-				selectedPostTitle
-					? `${__(
-							"Read More",
-							"dmg-read-more",
-					  )}: <a href="${selectedPostPermalink}">${selectedPostTitle}</a>`
-					: ""
-			}
-		/>
-	);
+	const blockProps = useBlockProps.save({
+		className: "dmg-read-more-block",
+		"data-post-id": selectedPostId,
+	});
+
+	return <div {...blockProps}></div>;
 };
 
 export default Save;

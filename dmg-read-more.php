@@ -32,3 +32,19 @@ function create_block_post_search_block_init()
 add_action('init', 'create_block_post_search_block_init');
 
 require_once 'dmg-read-more-cli.php';
+
+
+/**
+ * Enqueue the block frontend script.
+ */
+function enqueue_frontend_script()
+{
+	wp_enqueue_script(
+		'dmg-read-more-front',
+		plugins_url('build/front.js', __FILE__),
+		array(),
+		'1.0',
+		true
+	);
+}
+add_action('wp_enqueue_scripts', 'enqueue_frontend_script');
